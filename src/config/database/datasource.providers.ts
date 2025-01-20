@@ -1,5 +1,5 @@
 import { DataSource } from 'typeorm';
-import { User } from './users/entities/user.entity';
+import { User } from '../../users/entities/user.entity';
 
 export const databaseProviders = [
   {
@@ -15,7 +15,7 @@ export const databaseProviders = [
         timeTravelQueries: false,
         synchronize: false,
         extra: { ssl: { rejectUnauthorized: false } },
-        // entities: [__dirname + '/../**/*.entity{.ts,.js}']
+        // entities: [__dirname + '/../../**/*.entity{.ts,.js}']
         entities: [User],
       });
       return dataSource.initialize();

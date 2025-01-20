@@ -1,3 +1,4 @@
+import { hashPassword } from './../config/helper/ultil';
 import { Inject, Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -10,8 +11,10 @@ export class UsersService {
     @Inject('USER_REPOSITORY')
     private usersRepository: Repository<User>,
   ) {}
-  create(createUserDto: CreateUserDto) {
-    this.usersRepository.save(createUserDto);
+  async create(createUserDto: CreateUserDto) {
+    let hashPass = await hashPassword(createUserDto.password);
+    createUserDto.password = hashPass;
+    await this.usersRepository.save(createUserDto);
     return 'This action adds a new user';
   }
 

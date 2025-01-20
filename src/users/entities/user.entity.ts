@@ -16,10 +16,4 @@ export class User {
 
   @Column()
   type_login: string;
-
-  @Column()
-  create_at: Date;
-
-  @Column()
-  updated_at: Date;
 }
