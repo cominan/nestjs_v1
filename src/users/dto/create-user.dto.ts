@@ -9,4 +9,5 @@ export class CreateUserDto {
   password: string;
 
   type_login: string;
+  roles: string[];
 }
