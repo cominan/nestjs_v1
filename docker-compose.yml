@@ -1,0 +1,30 @@
+version: "3.8"
+services:
+  nestjs-app:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      MONGODB_URI: mongodb://localhost:27017/restaurants
+    volumes:
+      - .:/src
+      - /src/node_modules
+
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      MAIL_DEV: cominan.cominan@gmail.com
+      PASS_DEV: biukqdaxsojddtoe
+      REDIS_HOST: 127.0.0.1
+      REDIS_PORT: 6379
+      REDIS_PASSWORD:
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
